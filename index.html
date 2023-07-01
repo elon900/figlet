@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fancy Font Preview</title>
+  <script src="<CLOUDFLARE_WORKER_URL>" type="text/javascript"></script>
+</head>
+<body>
+  <pre id="result"></pre>
+  <script>
+    // This script uses the Figlet library imported from the Cloudflare Worker script
+    const text = 'Hello World';
+    const figletText = Figlet.textSync(text, 'Standard');
+    document.getElementById('result').textContent = figletText;
+  </script>
+</body>
+</html>
