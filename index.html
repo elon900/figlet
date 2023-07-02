@@ -6,7 +6,7 @@
 <body>
   <pre id="result"></pre>
   <script>
-    const worker = new Worker('https://figlet.anandpahade19-1cd.workers.dev/');
+    const worker = new Worker('https://figlet.anandpahade19-1cd.workers.dev');
 
     worker.onmessage = (event) => {
       document.getElementById('result').textContent = event.data;
