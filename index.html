@@ -19,7 +19,7 @@
       const worker = new Worker(workerUrl);
 
       worker.onmessage = event => {
-        document.getElementById('result').textContent = event.data;
+        document.getElementById('result').textContent = event.data.text;
       };
       
       return worker;
@@ -30,9 +30,9 @@
 
       if (inputText) {
         const worker = await loadFiglet();
-        worker.postMessage(inputText);
+        worker.postMessage({ text: inputText });
       } else {
-        document.getElementById('result').textContent = 'Please some text.';
+        document.getElementById('result').textContent = 'Please enter some text.';
       }
     }
   </script>
