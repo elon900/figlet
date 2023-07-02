@@ -2,15 +2,14 @@
 <html>
 <head>
   <title>Fancy Font Preview</title>
-  <script src="https://figlet.anandpahade19-1cd.workers.dev" type="text/javascript"></script>
 </head>
 <body>
   <pre id="result"></pre>
   <script>
-    // This script uses the Figlet library imported from the Cloudflare Worker script
-    const text = 'Hello World';
-    const figletText = figlet.textSync(text, 'Standard');
-    document.getElementById('result').textContent = figletText;
+    // Fetch and execute the Cloudflare Worker script
+    fetch('<CLOUDFLARE_WORKER_URL>')
+      .then(response => response.text())
+      .then(script => eval(script));
   </script>
 </body>
 </html>
