@@ -9,7 +9,7 @@
   <script>
     // This script uses the Figlet library imported from the Cloudflare Worker script
     const text = 'Hello World';
-    const figletText = Figlet.textSync(text, 'Standard');
+    const figletText = figlet.textSync(text, 'Standard');
     document.getElementById('result').textContent = figletText;
   </script>
 </body>
