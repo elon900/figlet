@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fancy Font Preview</title>
+  <title>Fancy Font Converter</title>
 </head>
 <body>
+  <input type="text" id="inputText" placeholder="Enter your text">
+  <button onclick="convertText()">Convert</button>
   <pre id="result"></pre>
+  
   <script>
     async function loadFiglet() {
       const response = await fetch('https://figlet.anandpahade19-1cd.workers.dev/');
@@ -18,11 +21,20 @@
       worker.onmessage = event => {
         document.getElementById('result').textContent = event.data;
       };
-
-      worker.postMessage('Hello World');
+      
+      return worker;
     }
+    
+    async function convertText() {
+      const inputText = document.getElementById('inputText').value;
 
-    loadFiglet();
+      if (inputText) {
+        const worker = await loadFiglet();
+        worker.postMessage(inputText);
+      } else {
+        document.getElementById('result').textContent = 'Please enter some text.';
+      }
+    }
   </script>
 </body>
 </html>
