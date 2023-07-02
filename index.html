@@ -6,13 +6,23 @@
 <body>
   <pre id="result"></pre>
   <script>
-    const worker = new Worker('https://figlet.anandpahade19-1cd.workers.dev');
+    async function loadFiglet() {
+      const response = await fetch('https://figlet.anandpahade19-1cd.workers.dev/');
+      const workerScript = await response.text();
 
-    worker.onmessage = (event) => {
-      document.getElementById('result').textContent = event.data;
-    };
+      const workerBlob = new Blob([workerScript], { type: 'application/javascript' });
+      const workerUrl = URL.createObjectURL(workerBlob);
 
-    worker.postMessage('Hello World');
+      const worker = new Worker(workerUrl);
+
+      worker.onmessage = event => {
+        document.getElementById('result').textContent = event.data;
+      };
+
+      worker.postMessage('Hello World');
+    }
+
+    loadFiglet();
   </script>
 </body>
 </html>
