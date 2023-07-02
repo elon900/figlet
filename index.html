@@ -6,7 +6,7 @@
 <body>
   <input type="text" id="inputText" placeholder="Enter your text">
   <button onclick="convertText()">Convert</button>
-  <pre id="result"></pre>
+  <div id="result"></div>
   
   <script>
     async function loadFiglet() {
@@ -32,7 +32,7 @@
         const worker = await loadFiglet();
         worker.postMessage(inputText);
       } else {
-        document.getElementById('result').textContent = 'Please enter some text.';
+        document.getElementById('result').textContent = 'Please some text.';
       }
     }
   </script>
