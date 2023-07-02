@@ -6,10 +6,13 @@
 <body>
   <pre id="result"></pre>
   <script>
-    // Fetch and execute the Cloudflare Worker script
-    fetch('https://figlet.anandpahade19-1cd.workers.dev/')
-      .then(response => response.text())
-      .then(script => eval(script));
+    const worker = new Worker('https://figlet.anandpahade19-1cd.workers.dev/');
+
+    worker.onmessage = (event) => {
+      document.getElementById('result').textContent = event.data;
+    };
+
+    worker.postMessage('Hello World');
   </script>
 </body>
 </html>
